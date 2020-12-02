@@ -24,7 +24,7 @@ def main():
         pos2 = int(line[1]) - 1
         c = line[2]
         psw = line[3]
-        if((psw[pos1] == c) !=  (psw[pos2] == c)): i+=1
+        if((psw[pos1] == c) != (psw[pos2] == c)): i+=1
      print("part2 : ", i)
      f.close() 
      return
