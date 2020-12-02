@@ -20,10 +20,11 @@ def main():
      i = 0
      for x in f:
         line = parse("{}-{} {}: {}", x)
-        psw = line[3]
         pos1 = int(line[0]) - 1
         pos2 = int(line[1]) - 1
-        if((psw[pos1] == line[2]) !=  (psw[pos2] == line[2])): i+=1
+        c = line[2]
+        psw = line[3]
+        if((psw[pos1] == c) !=  (psw[pos2] == c)): i+=1
      print("part2 : ", i)
      f.close() 
      return
