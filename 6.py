@@ -32,7 +32,7 @@ def part2():
       if(len(line) == 1 or n_line == len(lines) - 1): 
          set_char = set()
          for c in current_group:
-            if(current_group.count(c) >= count_line):
+            if(current_group.count(c) == count_line):
                set_char.update(c)
          counts.append(len(set_char))
          count_line = 0
