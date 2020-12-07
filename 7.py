@@ -15,12 +15,12 @@ def part1():
       splited_line = line.replace("\n","").split(" contain ")
       Node(splited_line[0].strip(), parent=root)
 
+
    # generate n-th levels
    for pre, fill, node in RenderTree(root):
       for n_line, line in enumerate(lines):
          splited_line = line.replace("\n","").split(" contain ")
-         node_name = ''.join([i for i in node.name if not i.isdigit()]).strip()
-         if(node_name in splited_line[0]):
+         if(node.name in splited_line[0]):
             desc = splited_line[1].split(",")
             for d in desc:
                d_value = ''.join([i for i in d if i.isdigit()]).strip()
@@ -28,8 +28,8 @@ def part1():
                Node(d_name, parent=node, value=d_value)
 
    #print the tree
-   # for pre, fill, node in RenderTree(root):
-   #  print("%s%s" % (pre, node.name))
+   for pre, fill, node in RenderTree(root):
+     print("%s%s" % (pre, node.name))
 
    results = []
    for pre, fill, node in RenderTree(root, maxlevel=2):
