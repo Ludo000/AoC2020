@@ -27,7 +27,7 @@ def main():
    f = open("input9.txt", "r")
    lines = f.readlines()
    f.close()
-   data = [
+   data = []
    for line in lines:
       data.append(int(line.rstrip("\n")))
    invalid_number = part1(data, 25)
