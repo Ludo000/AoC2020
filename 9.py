@@ -1,5 +1,4 @@
 def part1(data, preamble):
-   # part 1
    print("# part1:")
    for i in range(0, len(data)):
       if(i > preamble-1):
@@ -13,11 +12,7 @@ def part1(data, preamble):
          if(not ok):
             return data[i]
 
-   
-         
-
 def part2(data, invalid_number):
-   # part 2
    print("# part2:")
    for i in range(0, len(data)):
       count = 0
@@ -28,13 +23,11 @@ def part2(data, invalid_number):
          if(data[i] != invalid_number and count == invalid_number):
             return min(res) + max(res)
 
-
 def main():
    f = open("input9.txt", "r")
    lines = f.readlines()
    f.close()
-   data = []
-
+   data = [
    for line in lines:
       data.append(int(line.rstrip("\n")))
    invalid_number = part1(data, 25)
