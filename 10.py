@@ -1,5 +1,6 @@
 def part1(data):
    print("# part1:")
+   data.sort()
    i=0
    distri = []
    for c in data:
@@ -19,57 +20,34 @@ def part1(data):
 
 def part2(data):
    print("# part2:")
-   tab_arr = []
-   arr = []
-   arr.append(0)
-   tab_arr.append(arr)
+   data.append(max(data)+3)
    data.append(0)
-   data.sort()
-   print(data)
-   i_a=0
-   while i_a <= len(tab_arr)-1:
-      current_c = 0
-      k=0
-      for i_c,c in enumerate(data):
-         if (int(c) >= max(tab_arr[i_a])):
-            current_c = int(c)
-            k = i_c
-            break
-      start = k
-      end = k+3
-      if(end > len(data)-1): end = len(data)-1
+   #data.reverse()
+   combi = {}
+   for i, d in enumerate(data) :
+      ok = []
+      for j in range(1,4):
+         if(d-j in data):
+            ok.append(d-j)
+      combi[int(d)] = ok
+   print("data ok")
+   print(cal(max(data), combi, 0))
 
-      print("current_c: ", current_c)
-      sub = []
-      
-      for d in range(start, end+1):
-         if(data[d] > current_c and data[d] <= current_c+3):
-            sub.append(data[d])
-      #print("sub: ",sub)
-      if(len(sub)>=1):
-         #print("old a: ", tab_arr[i_a])
-         #print("adding: ", sub[0])
-         aa = tab_arr[i_a].copy()
-         aa.append(sub[0])
-         #print("new a: ", aa)
-      if(len(sub)>1):
-         for s in range(1, len(sub)):
-            b = tab_arr[i_a].copy()
-            b.append(sub[s])
-            #print("new array :", b)
-            tab_arr.append(b)
-      tab_arr[i_a] = aa
 
+def cal(d, combi, i):
+   # pre = ''
+   # for j in range(0,i): 
+   #    pre += '_ '
+   # print(f'{pre}{d}')
+   # print()
+   sum_c = 0
+   for c in combi[d]:
+      sum_c += cal(c, combi, i+1) or 1
+   return sum_c
       
-      if(current_c == max(data)):
-         i_a += 1
-   #set_arr = set(tuple(row) for row in tab_arr)
-   print()
-   # for a in tab_arr:
-   #    print(a)
-   print(len(tab_arr))
+
 def main():
-   f = open("input10.txt", "r")
+   f = open("input10-test2.txt", "r")
    lines = f.readlines()
    f.close()
    data = []
@@ -77,7 +55,6 @@ def main():
       data.append(int(line.rstrip("\n")))
    
    #data.append(max(data) + 3)
-   data.sort()
    #print(part1(data))
    part2(data)
 
