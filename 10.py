@@ -22,15 +22,20 @@ def part2(data):
    print("# part2:")
    data.append(max(data)+3)
    data.append(0)
-   #data.reverse()
+   data.sort()
+   data.reverse()
    combi = {}
    for i, d in enumerate(data) :
       ok = []
       for j in range(1,4):
-         if(d-j in data):
-            ok.append(d-j)
-      combi[int(d)] = ok
+         k = i+j
+         if(k > len(data)-1): k = len(data)-1
+         if(data[k]<data[i] and data[k]>=data[i]-3):
+            ok.append(data[k])
+      combi[int(d)] = list(set(ok))
    print("data ok")
+   print(data)
+   print(combi)
    print(cal(max(data), combi, 0))
 
 
@@ -47,7 +52,7 @@ def cal(d, combi, i):
       
 
 def main():
-   f = open("input10-test2.txt", "r")
+   f = open("input10.txt", "r")
    lines = f.readlines()
    f.close()
    data = []
